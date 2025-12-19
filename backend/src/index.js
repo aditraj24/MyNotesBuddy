@@ -5,7 +5,7 @@ import cors from "cors";
 
 import rateLimiter from "./middlewares/rateLimiter.middleware.js";
 // import path from "path";
-import notesRoutes from "./routes/note.routes.js";
+import router from "./routes/note.routes.js";
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.use(rateLimiter);
 
 // routes
 
-app.use("/api/notes", notesRoutes);
+app.use("/api/notes", router);
 
 // // production frontend
 // if (process.env.NODE_ENV === "production") {
