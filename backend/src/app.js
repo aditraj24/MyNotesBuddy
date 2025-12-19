@@ -2,9 +2,11 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import rateLimiter from "./middlewares/rateLimiter.middleware.js";
-import path from "path";
+// routes import
+import notesRoutes from "./routes/note.routes.js";
+// import path from "path";
 const app = express();
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 // middleware
 if (process.env.NODE_ENV !== "production") {
@@ -21,17 +23,16 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(rateLimiter);
 
-// routes import
-import notesRoutes from "./routes/note.routes.js";
+
 
 // routes declaration
 app.use("/api/notes", notesRoutes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend","dist","index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend","dist","index.html"));
+//   });
+// }
 export { app };
