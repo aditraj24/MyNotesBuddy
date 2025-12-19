@@ -1,11 +1,11 @@
-import dotenv from "dotenv";
-import { connectDB } from "./config/db.js";
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+import noteRoutes from "./routes/note.routes.js";
 
+import { connectDB } from "./config/db.js";
 import rateLimiter from "./middlewares/rateLimiter.middleware.js";
 // import path from "path";
-import router from "./routes/note.routes.js";
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.use(rateLimiter);
 
 // routes
 
-app.use("/api/notes", router);
+app.use("/api/notes", noteRoutes);
 
 // // production frontend
 // if (process.env.NODE_ENV === "production") {
